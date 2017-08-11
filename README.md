@@ -46,3 +46,7 @@ If you specify the -t option, then you will receive the field names too:
     color	blue	price	1.99
     color	red	price	3.99
     color	yellow	price	2.49
+
+## Notes
+
+Maximum line length is 1MB
