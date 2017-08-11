@@ -19,6 +19,16 @@ color	red	fruit	strawberry	price	3.99	sale	2.99
 color	yellow	price	2.49	fruit	banana
 ````
 
+## Options
+
+ -t Output column names inline, retaining the key-value format
+
+ -h Output column names as header
+
+ -n NULL Output NULL string as null
+
+## Examples
+
 The tsvcut command should be run with the list of desired fields on
 its command-line, and the TSV file supplied as stdin (using
 redirection or pipes):
