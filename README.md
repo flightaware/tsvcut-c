@@ -21,7 +21,7 @@ color	yellow	price	2.49	fruit	banana
 
 ## Options
 
- -t Output column names inline, retaining the key-value format
+ -t Output column names inline, retaining the key-value format... null columns are not output
 
  -h Output column names as header
 

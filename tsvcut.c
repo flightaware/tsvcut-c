@@ -118,9 +118,16 @@ int main(int ac, char **av)
 	}
 	while(fgets(buf, HUGEBUF, stdin)) {
 		int c;
+		int first = 1;
 		tsvparse(buf, cols, nCols);
 		for(c = 0; c < nCols; c++) {
-			if(c) putchar('\t');
+			if(kvOutput && !cols[c].length)
+				continue;
+			if(first) {
+				first = 0;
+			} else {
+				putchar('\t');
+			}
 			if(kvOutput) printf("%s\t", cols[c].name);
 			if(cols[c].length)
 				fwrite(cols[c].start, cols[c].length, 1, stdout);
