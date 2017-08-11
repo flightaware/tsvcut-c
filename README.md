@@ -1,6 +1,6 @@
 # tsvcut-c
 
-_Native C version of bovine/tsvcut
+_Native C version of bovine/tsvcut_
 
 This is a simple command-line program to cut out specific fields from
 a TSV (tab separated values) file and return just those values.  Its
