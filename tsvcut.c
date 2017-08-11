@@ -8,6 +8,7 @@ typedef struct _col {
 	char *name; // Name of column (from command line)
 	char *start; // Start of value of column (from input)
 	int length; // length of value of column (from input)
+	int null; // missing
 } col;
 
 
@@ -29,6 +30,7 @@ void tsvparse(char *line, col *cols, int nCols)
 	for(c = 0; c < nCols; c++) {
 		cols[c].start = NULL;
 		cols[c].length = 0;
+		cols[c].null = 1;
 	}
 
 	p = line;
@@ -47,6 +49,7 @@ void tsvparse(char *line, col *cols, int nCols)
 			if(c < nCols) {
 				cols[c].start = val;
 				cols[c].length = vallen;
+				cols[c].null = 0;
 			}
 		}
 	}
@@ -121,7 +124,7 @@ int main(int ac, char **av)
 		int first = 1;
 		tsvparse(buf, cols, nCols);
 		for(c = 0; c < nCols; c++) {
-			if(kvOutput && !cols[c].length)
+			if(kvOutput && cols[c].null)
 				continue;
 			if(first) {
 				first = 0;
@@ -129,10 +132,10 @@ int main(int ac, char **av)
 				putchar('\t');
 			}
 			if(kvOutput) printf("%s\t", cols[c].name);
-			if(cols[c].length)
-				fwrite(cols[c].start, cols[c].length, 1, stdout);
-			else
+			if(cols[c].null)
 				printf("%s", null);
+			else if(cols[c].length)
+				fwrite(cols[c].start, cols[c].length, 1, stdout);
 		}
 		putchar('\n');
 	}
