@@ -8,4 +8,5 @@ $P: $O
 
 install: $P
 	install -s $P $(PREFIX)/bin/$P
+	install -d $(PREFIX)/share/man/man1
 	install $P.1 $(PREFIX)/share/man/man1/$P.1
